@@ -246,7 +246,7 @@ vectors in julia are assumed to be column vectors by default, so you can read `[
 
 # ╔═╡ 44d2cc30-71f3-4c8c-b0cf-db8fa737583c
 md"""
-__matrices__ (same as type Array, but with more than one dimension)
+horizontal concatenation gives you __matrices__ (same as type Array, but with more than one dimension)
 """
 
 # ╔═╡ ad8ec88b-d7d5-46c8-98ee-a82bfcc00888
@@ -303,6 +303,28 @@ my_named_tup = (a = 1, b = 2, c = 3)
 # ╔═╡ a5acaf0d-3ebb-4f9b-8926-3b8c9bf2a825
 my_named_tup[1] == my_named_tup.a
 
+# ╔═╡ 3cca013c-dd2c-4f56-98e4-7715d581182c
+md"
+**Structs** are extensions of tuples, and we can define mutable ones too:
+"
+
+# ╔═╡ 2dca3886-3051-4b74-a912-a7b28949e699
+mutable struct Peep
+	age::Int
+	height::Float64
+	hobby::String
+	dancer::Bool
+end
+
+# ╔═╡ a9fa84d4-1d28-4263-b0b2-8fb4796158cf
+alejandro = Peep(30, 1.75, "julia", false)
+
+# ╔═╡ c5538895-1dd7-47c4-b858-8ebcb9e2f950
+alejandro.hobby
+
+# ╔═╡ 05ff553f-2bc2-497a-8de8-b9d4c5f4498e
+alejandro.dancer
+
 # ╔═╡ bce84be6-db02-413f-bf60-263618ec03e4
 md"""
 __functions__: we have several options to define them
@@ -342,6 +364,22 @@ t(1, 2)
 # ╔═╡ 96b63203-f410-402e-b6db-645cc15c55d2
 t(1, 2, meow="lol")
 
+# ╔═╡ da719d14-eacf-4186-a031-82b219b82d45
+md"""
+functions can also be anonymous:
+"""
+
+# ╔═╡ 607c83a3-dd35-42c0-beef-dff0bed87dbd
+x -> 2*x
+
+# ╔═╡ 50fc4b79-5075-4419-917e-618278b98bd5
+md"""
+this is useful in many cases. One such case is when we want to use `filter()` to select only certain elements from an iterable based on some criterion. Our anonymous function will be the criterion, receiving the array element and returning a Boolean value:
+"""
+
+# ╔═╡ bae76492-2603-482f-b220-1bba3fd3a512
+filter( x -> x == 2, [1, 2, 3] )
+
 # ╔═╡ f4ddc4eb-0391-42d6-9669-3157ab3c4c71
 md"""
 Multiple dispatch:
@@ -361,22 +399,6 @@ f(2.0, 3)
 
 # ╔═╡ ac387ea7-853d-4d21-9f4c-32b9c4cb969c
 f(2.0, 3.0)
-
-# ╔═╡ da719d14-eacf-4186-a031-82b219b82d45
-md"""
-functions can also be anonymous:
-"""
-
-# ╔═╡ 607c83a3-dd35-42c0-beef-dff0bed87dbd
-x -> 2*x
-
-# ╔═╡ 50fc4b79-5075-4419-917e-618278b98bd5
-md"""
-this is useful in many cases. One such case is when we want to use `filter()` to select only certain elements from an iterable based on some criterion. Our anonymous function will be the criterion, receiving the array element and returning a Boolean value:
-"""
-
-# ╔═╡ bae76492-2603-482f-b220-1bba3fd3a512
-filter( x -> x == 2, [1, 2, 3] )
 
 # ╔═╡ 6928044a-3cf8-40da-87ee-07015e73a1b1
 md"""
@@ -1681,6 +1703,11 @@ version = "1.4.1+0"
 # ╠═3ff8a11f-1634-4c62-83d4-e08a818523a2
 # ╠═deb54398-06f6-4f5a-8468-76d5dcb8c362
 # ╠═a5acaf0d-3ebb-4f9b-8926-3b8c9bf2a825
+# ╟─3cca013c-dd2c-4f56-98e4-7715d581182c
+# ╠═2dca3886-3051-4b74-a912-a7b28949e699
+# ╠═a9fa84d4-1d28-4263-b0b2-8fb4796158cf
+# ╠═c5538895-1dd7-47c4-b858-8ebcb9e2f950
+# ╠═05ff553f-2bc2-497a-8de8-b9d4c5f4498e
 # ╟─bce84be6-db02-413f-bf60-263618ec03e4
 # ╠═3a5f8d46-a8a5-4a31-9dbb-ee13bcbbd288
 # ╟─17b797a3-6130-4be3-a29f-1d413e5cec16
@@ -1690,12 +1717,6 @@ version = "1.4.1+0"
 # ╠═f6ca774b-0272-4d11-b350-3c2ad65b31f0
 # ╠═48c80b28-fe38-456c-89c9-3c45d6e19523
 # ╠═96b63203-f410-402e-b6db-645cc15c55d2
-# ╟─f4ddc4eb-0391-42d6-9669-3157ab3c4c71
-# ╠═2e834f9a-5027-4b24-8f1b-1f5625282976
-# ╠═b40961bf-f2d7-4941-ac85-6526f02e935e
-# ╠═7fae45ca-488d-4d94-9808-caf70a5ac125
-# ╠═4ce99c97-df1d-4f48-bc09-277fc84ac7a4
-# ╠═ac387ea7-853d-4d21-9f4c-32b9c4cb969c
 # ╟─da719d14-eacf-4186-a031-82b219b82d45
 # ╠═607c83a3-dd35-42c0-beef-dff0bed87dbd
 # ╟─50fc4b79-5075-4419-917e-618278b98bd5
@@ -1719,6 +1740,12 @@ version = "1.4.1+0"
 # ╠═72e52881-a058-43d8-a660-9946a3d48c68
 # ╠═e3eee1ef-7c53-4ade-92e6-95c29a19537a
 # ╟─a41ab7a9-ec6c-45f5-88cc-b2e5cfd96049
+# ╟─f4ddc4eb-0391-42d6-9669-3157ab3c4c71
+# ╠═2e834f9a-5027-4b24-8f1b-1f5625282976
+# ╠═b40961bf-f2d7-4941-ac85-6526f02e935e
+# ╠═7fae45ca-488d-4d94-9808-caf70a5ac125
+# ╠═4ce99c97-df1d-4f48-bc09-277fc84ac7a4
+# ╠═ac387ea7-853d-4d21-9f4c-32b9c4cb969c
 # ╠═acda237b-0f60-4aeb-a8f9-1770535cd2f4
 # ╠═fb8b9535-9180-41d6-abc5-cad967e825c8
 # ╠═84d67df6-40dd-4c7d-9737-df1a804af35f
